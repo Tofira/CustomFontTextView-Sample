@@ -1,5 +1,7 @@
 # CustomFontTextView-Sample
-Sample project for supporting custom fonts in Android applications. It uses font cache and allows for settings fonts directly from the XML.
+Sample project for supporting custom fonts in Android applications.
+
+It uses font cache and allows for setting fonts directly from the XML.
 
 Based on the following great Tutorial - 
 
