@@ -41,5 +41,6 @@ Cosinder the following example -
 	android:textStyle="bold"/>
 ```
         
-We used the `useStyle` (default value - False) to specify that we'd like the library to use styles. Note, that each font should be named with regards to its style. For example - MavenPro-Bold.ttf.
+We used the `useStyle` (default value - False) to specify that we'd like the library to use styles. Note, that each font should be named with regards to its style, in the following notation - [FontName]-[FontStyle].[FileType].
+For example - MavenPro-Bold.ttf.
 
