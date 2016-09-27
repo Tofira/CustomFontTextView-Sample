@@ -15,7 +15,7 @@ Add your fonts to the folder /assets/fonts.
 
 Simple sample usage - 
 
-```<sample.font.custom.customfonttextviewsample.CustomFontTextView
+```xml<sample.font.custom.customfonttextviewsample.CustomFontTextView
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
 	android:layout_margin="12dp"
@@ -30,7 +30,7 @@ use `font` attribute to specify the required font. You can write it with its suf
 
 Cosinder the following example - 
 
-```<sample.font.custom.customfonttextviewsample.CustomFontTextView
+```xml<sample.font.custom.customfonttextviewsample.CustomFontTextView
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
 	android:layout_margin="12dp"
