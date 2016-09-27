@@ -7,12 +7,12 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 
 /**
- * See <a href="https://futurestud.io/tutorials/custom-fonts-on-android-dynamic-font-selection-via-xml">this tutorial</a>  for custom styles.
+ * Based on <a href="https://futurestud.io/tutorials/custom-fonts-on-android-dynamic-font-selection-via-xml">this tutorial</a> .
  */
 public class CustomFontTextView extends TextView {
 
     public static final String ANDROID_SCHEMA = "http://schemas.android.com/apk/res/android";
-
+    private static final String[] typefaceFileTypes = {"",".ttf", ".otf",".ttc",".pfb", ".dfont", ".fnt"};
     public CustomFontTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
@@ -31,38 +31,55 @@ public class CustomFontTextView extends TextView {
                 R.styleable.CustomFontTextView);
 
         String fontName = attributeArray.getString(R.styleable.CustomFontTextView_font);
+
+        boolean useStyle= attributeArray.getBoolean(R.styleable.CustomFontTextView_useStyle, false);
+
         int textStyle = attrs.getAttributeIntValue(ANDROID_SCHEMA, "textStyle", Typeface.NORMAL);
 
-        Typeface customFont = selectTypeface(context, fontName, textStyle);
+        Typeface customFont = selectTypeface(context, fontName, useStyle,textStyle);
         setTypeface(customFont);
 
         attributeArray.recycle();
     }
 
-    private Typeface selectTypeface(Context context, String fontName, int textStyle) {
-        if (fontName.contentEquals(context.getString(R.string.font_name_source_sans_pro))) {
-              /*
-              information about the TextView textStyle:
-              http://developer.android.com/reference/android/R.styleable.html#TextView_textStyle
-              */
-            switch (textStyle) {
-                case Typeface.BOLD: // bold
-                    return FontCache.getTypeface("SourceSansPro-Bold.ttf", context);
-
-                case Typeface.ITALIC: // italic
-                    return FontCache.getTypeface("SourceSansPro-Italic.ttf", context);
-
-                case Typeface.BOLD_ITALIC: // bold italic
-                    return FontCache.getTypeface("SourceSansPro-BoldItalic.ttf", context);
-
-                case Typeface.NORMAL: // regular
-                default:
-                    return FontCache.getTypeface("SourceSansPro-Regular.ttf", context);
-            }
-        }
+    private Typeface selectTypeface(Context context, String fontName, boolean useStyle,int textStyle) {
+        if(useStyle)
+            fontName = fontName + getFontStyleSuffix(textStyle);
 
         //If font wasn't found - return null and Android will use the default Font (Roboto).
-        return FontCache.getTypeface(fontName, context);
-
+        return selectTypefaceWithFileType(context,fontName);
     }
+
+    private String getFontStyleSuffix(int textStyle)
+    {
+        String fontStyleSuffix;
+        switch (textStyle) {
+            case Typeface.BOLD: // bold
+                fontStyleSuffix =  "Bold";
+                break;
+
+            case Typeface.ITALIC: // italic
+                fontStyleSuffix =  "Italic";
+                break;
+            case Typeface.BOLD_ITALIC: // bold italic
+                fontStyleSuffix =  "BoldItalic";
+                break;
+            case Typeface.NORMAL: // regular
+            default:
+                fontStyleSuffix =  "Normal";
+        }
+        return "-"+fontStyleSuffix;
+    }
+
+    private Typeface selectTypefaceWithFileType(Context context, String fontName)
+    {
+        Typeface typeface;
+        for(String suffix:typefaceFileTypes)
+        {
+            if( (typeface = FontCache.getTypeface(fontName+suffix, context)) != null)
+                return typeface;
+        }
+        return null;
+    }
+
 }

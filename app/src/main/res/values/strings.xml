@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">CustomFontTextViewsample</string>
 
-    <string name="font_name_maven_pro_black">MavenPro-Black.ttf</string>
-    <string name="font_name_maven_pro_light">MavenProLight-200.otf</string>
+    <string name="font_name_maven_pro_black">MavenPro-Black</string>
+    <string name="font_name_maven_pro_light">MavenProLight-200</string>
     <string name="font_name_source_sans_pro">sans</string>
 
 </resources>

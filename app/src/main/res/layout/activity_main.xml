@@ -15,9 +15,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
-        android:text="Maven Pro Black"
+        android:text="Maven Pro Bold"
         android:textSize="18sp"
-        app:font="@string/font_name_maven_pro_black"/>
+        app:font="MavenPro"
+        app:useStyle="true"
+        android:textStyle="bold"/>
 
     <sample.font.custom.customfonttextviewsample.CustomFontTextView
         android:layout_width="wrap_content"
